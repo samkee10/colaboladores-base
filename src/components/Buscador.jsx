@@ -1,14 +1,8 @@
-function Buscador({ listaColaboladores, setBusqueda }) {
+import React from 'react';
+
+function Buscador({ setBusqueda }) {
   const buscar = (dato) => {
-    const listaFiltro = listaColaboladores.filter(
-      (e) =>
-        e.nombre.toLowerCase().includes(dato.toLowerCase()) ||
-        e.correo.toLowerCase().includes(dato.toLowerCase()) || 
-        e.edad.includes(dato) ||
-        e.cargo.toLowerCase().includes(dato.toLowerCase()) ||
-        e.telefono.includes(dato)
-    );
-    setBusqueda(listaFiltro);
+    setBusqueda(dato);
   };
 
   return (

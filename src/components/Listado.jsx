@@ -1,25 +1,31 @@
-import Table from "react-bootstrap/Table";
+import React from 'react';
+import Table from 'react-bootstrap/Table';
 
-const Listado = ({ lista, setLista, setColaboradores, agregarColaborador }) => {
-  const eliminarColaborador = (colaborador) => {
+const Listado = ({ lista, busqueda, eliminarColaborador, setLista }) => {
+  const borrarColaborador = (colaborador) => {
     const listaFiltro = lista.filter((e) => e.id !== colaborador.id);
     setLista(listaFiltro);
-    setColaboradores(listaFiltro);
   };
 
   const botonStyle = {
-    width: "2rem",
-    height: "2rem",
+    width: '2rem',
+    height: '2rem',
   };
 
-  // Llamar a esta función cuando quieras agregar un nuevo colaborador
-  const agregarNuevoColaborador = (nuevoColaborador) => {
-    agregarColaborador(nuevoColaborador);
-  };
+  const listaFiltrada = busqueda
+    ? lista.filter(
+        (colaborador) =>
+          colaborador.nombre.toLowerCase().includes(busqueda.toLowerCase())  ||
+          colaborador.correo.toLowerCase().includes(busqueda.toLowerCase()) ||
+          colaborador.edad.toString().includes(busqueda) ||
+          colaborador.cargo.toLowerCase().includes(busqueda.toLowerCase())  ||
+          colaborador.telefono.toString().includes(busqueda)
+      )
+    : lista;
 
   return (
     <>
-      <Table className='tabla'>
+      <Table className="tabla">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -31,7 +37,7 @@ const Listado = ({ lista, setLista, setColaboradores, agregarColaborador }) => {
           </tr>
         </thead>
         <tbody>
-          {lista.map((colaborador) => (
+          {listaFiltrada.map((colaborador) => (
             <tr key={colaborador.id}>
               <td>{colaborador.nombre}</td>
               <td>{colaborador.correo}</td>
@@ -40,8 +46,8 @@ const Listado = ({ lista, setLista, setColaboradores, agregarColaborador }) => {
               <td>{colaborador.telefono}</td>
               <td className="text-center">
                 <button
-                  style={{ ...botonStyle, backgroundColor: "red" }}
-                  onClick={() => eliminarColaborador(colaborador)}
+                  style={{ ...botonStyle, backgroundColor: 'red' }}
+                  onClick={() => borrarColaborador(colaborador)}
                 >
                   🗑️
                 </button>
@@ -52,6 +58,6 @@ const Listado = ({ lista, setLista, setColaboradores, agregarColaborador }) => {
       </Table>
     </>
   );
-}
+};
 
 export default Listado;

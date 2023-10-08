@@ -36,10 +36,8 @@ const Formulario = ({ setAlert, agregarColaborador }) => {
       return;
     }
 
-    // Llama a la función agregarColaborador para agregar el nuevo colaborador
-    agregarColaborador(nuevoColaborador); // Utiliza la función para agregar
+    agregarColaborador(nuevoColaborador);
 
-    // Limpia el formulario
     setNuevoColaborador({
       nombre: '',
       correo: '',

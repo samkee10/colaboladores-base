@@ -10,11 +10,12 @@ function Buscador({ listaColaboladores, setBusqueda }) {
     );
     setBusqueda(listaFiltro);
   };
+
   return (
     <>
       <input
         type="text"
-        placeholder="Buscar un colabolador"
+        placeholder="Buscar un colaborador"
         onChange={(e) => buscar(e.target.value)}
         className="form-control mb-3"
       />
@@ -22,4 +23,4 @@ function Buscador({ listaColaboladores, setBusqueda }) {
   );
 }
 
-export default Buscador
+export default Buscador;

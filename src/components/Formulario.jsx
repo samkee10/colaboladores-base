@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Formulario = ({ setAlert, colaboradores, setColaboradores }) => {
+const Formulario = ({ setAlert, agregarColaborador }) => {
   const [nuevoColaborador, setNuevoColaborador] = useState({
     nombre: '',
     correo: '',
@@ -36,10 +36,10 @@ const Formulario = ({ setAlert, colaboradores, setColaboradores }) => {
       return;
     }
 
-    // Agregar el nuevo colaborador a la lista de colaboradores
-    setColaboradores([...colaboradores, nuevoColaborador]);
+    // Llama a la función agregarColaborador para agregar el nuevo colaborador
+    agregarColaborador(nuevoColaborador); // Utiliza la función para agregar
 
-    // Limpiar el formulario
+    // Limpia el formulario
     setNuevoColaborador({
       nombre: '',
       correo: '',
@@ -53,11 +53,6 @@ const Formulario = ({ setAlert, colaboradores, setColaboradores }) => {
       msg: 'Colaborador agregado',
       color: 'success'
     });
-  };
-
-  const generarId = () => {
-    const d = new Date();
-    return d.getHours() + d.getMinutes() + d.getSeconds();
   };
 
   const botonStyle = {

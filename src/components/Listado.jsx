@@ -1,5 +1,17 @@
-const Listado =( {colab,enviarId}) => {
+import {Table} from "react-bootstrap";
 
+const Listado =( {lista, setLista, setColaboladores }) => {
+  const eliminarColabolador = (colaborador) => {
+    const listaFiltro = lista.filter((e) =>e.id !== colaborador.id);
+    setLista(listaFiltro);
+    setColaboladores(listaFiltro);
+  };
+
+  const botonStyle = {
+    width: "2rem",
+    height: "2rem",
+    variant: "danger",
+  }
   return (
     <>
       <Table className='tabla'>
@@ -14,7 +26,7 @@ const Listado =( {colab,enviarId}) => {
           </tr>
         </thead>
         <tbody>
-            {colab.map(colaborador => 
+            {lista.map((colaborador) =>(
               <tr key={colaborador.id}>
                 <td>{colaborador.nombre}</td>
                 <td>{colaborador.correo}</td>
@@ -22,10 +34,13 @@ const Listado =( {colab,enviarId}) => {
                 <td>{colaborador.cargo}</td>
                 <td>{colaborador.telefono}</td>
                 <td className="text-center">
-                  <button className="btn btn-light" onClick={()=> { enviarId(colaborador.id)}}>🗑️</button>
+                  <button style={botonStyle} onClick={() => eliminarColabolador(colaborador)}
+                >
+                🗑️
+                </button>
                 </td>
               </tr>
-            )}
+            ))}
         </tbody>
       </Table>
     </>
